@@ -1,0 +1,160 @@
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+	<script>
+	nome_hotel()
+	prompt('Seu nome?')
+	acesso()
+	
+	function nome_hotel (){
+		var nome_hotel = prompt("Digite o nome do hotel. Por favor!");
+		var tratamento_dado_1 = 
+		nome_hotel.charAt(0).toUpperCase() + nome_hotel.slice(1);
+		alert(`"O nome do hotel é ${tratamento_dado_1}`);
+	}
+	
+		function acesso() {
+		var senha = prompt(`digite sua senha`)
+		if(senha == '2678') {
+		inicio()
+		} while (senha != '2678') {
+		alert('Senha invalida')
+		acesso()
+		}
+	}	
+
+	function inicio() {
+		var escolha = parseInt(prompt('Selecione uma opção 1.) Reserva de Quartos 2.) Abastecimento de carros 3.) Sair 4.) Eventos'));
+		if (escolha === 1) {
+			reserva_quartos();
+		} else if (escolha === 2) {
+			abastecerCarro();
+		} else if (escolha === 3) {
+			sair();
+		} else if (escolha === 4) {
+			eventos();
+		}
+		 else {
+			erro();
+		}
+}
+
+	function reserva_quartos() {
+		var valor_auxiliar = parseFloat(prompt("Digite o valor diário:"));
+		var valor = valor_auxiliar; // atribui o valor da variável auxiliar à variável valor
+		while (valor != 55.00) {
+			alert('Valor errado!');
+			valor = parseFloat(prompt("Digite o valor diário:")); // pede novamente o valor até ser 55.00
+		}
+		var dias = parseInt(prompt("Digite o número de dias:"));
+		if(valor * dias) {
+			alert(`O valor total em reais é: ${valor * dias}`);
+		}
+		return valor * dias // retorna o valor total da reserva
+		
+	}
+
+	// Lista de hóspedes
+	
+		const hospedes = [];
+
+	// Função para cadastrar um novo hóspede
+	
+	function cadastro_hospede() {
+		const nome = prompt("Digite o nome do hóspede:");
+		const idade = prompt("Digite a idade do hóspede:");
+		const diaria = idade > 6 ? 55 : 0;
+		const hospede = { nome, idade };
+		hospedes.push(hospede);
+		alert("Hóspede cadastrado com sucesso!");
+		}
+	
+	// Função para pesquisar um hóspede pelo nome
+	
+	function pesquisarHospede() {
+		const nome = prompt("Digite o nome do hóspede que deseja pesquisar:");
+		const resultado = hospedes.filter(hospede => hospede.nome.toLowerCase().includes(nome.toLowerCase()));
+		if (resultado.length > 0) {
+			alert("Hóspede(s) encontrado(s):\n\n" + resultado.map(hospede => hospede.nome + " - " + hospede.idade + " anos").join("\n"));
+		} else {
+			alert("Nenhum hóspede encontrado com esse nome.");
+		}
+	}
+
+
+	// Função para listar todos os hóspedes cadastrados
+	
+	function listarHospedes() {
+		alert("Lista de hóspedes:\n\n" + hospedes.map(hospede => hospede.nome + " - " + hospede.idade + " anos").join("\n"));
+		}
+
+	// Loop principal do programa
+	
+	var opcao = parseInt(prompt('Selecione uma opção 6.) cadastro Hospede  7.) listar hospede 8.) pesquisar hospede 9.) sair'));
+		if (opcao === 6) {
+			cadastro_hospede();
+		} else if (opcao === 7) {
+			listarHospedes();
+		} else if (opcao === 8) {
+			pesquisarHospede();
+		} else if (opcao === 9) {
+			sair();
+		}
+		 else {
+			erro();
+		}
+	
+
+	function eventos() {
+		var horasEvento = parseInt(prompt("Digite a quantidade de horas do evento:"));
+		var numGarcons = parseInt(prompt("Digite o número de garçons para o evento:"));
+		var custoGarcomPorHora = 10; // Defina o custo de cada garçom por hora
+		var custoTotal = horasEvento * custoGarcomPorHora * numGarcons;
+
+    	alert(`O custo total do evento será de R$ ${custoTotal.toFixed(2)}`);
+
+		var confirmacao = prompt("Deseja confirmar o evento? (S/N)").toUpperCase();
+		if (confirmacao === 'S') {
+        	// Ação a ser tomada caso o evento seja confirmado
+        alert("Evento confirmado!");
+    	} else {
+        // Ação a ser tomada caso o evento não seja confirmado
+        alert("Evento não confirmado.");
+    }
+}
+
+	function abastecerCarro() {
+		const precoAlcool = 4.20;
+		const precoGasolina = 5.82;
+
+		const combustivel = prompt("Informe o tipo de combustível (Álcool ou Gasolina):");
+		const litros = parseFloat(prompt("Informe a quantidade de litros abastecidos:"));
+
+		let valorTotal = 0;
+
+		if (combustivel.toLowerCase() === "álcool") {
+			valorTotal = precoAlcool * litros;
+		} else if (combustivel.toLowerCase() === "gasolina") {
+			valorTotal = precoGasolina * litros;
+		} else {
+			alert("Tipo de combustível inválido.");
+			return;
+ 		}
+  		 alert(`Você abasteceu ${litros.toFixed(2)} litros de ${combustivel} por R$ ${valorTotal.toFixed(2)}`);
+		}	
+
+
+
+
+		function sair () {
+			inicio()
+		}	
+
+
+
+			
+
+
+</script>
+
+</html>
